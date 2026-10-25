@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar (Admin Theme) -->
+<nav class="sidebar theme-admin">
+  <a class="brand" href="admin-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#60a5fa;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Admin User</div>
+      <div class="role"><span class="dot"></span>Super Admin</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <span class="nav-section-title">Core</span>
+    <a class="nav-link active" href="admin-dashboard.html">
+      <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+    </a>
+
+    <span class="nav-section-title">User Management</span>
+    <a class="nav-link" href="add-user.html"><i class="bi bi-person-plus-fill"></i> <span>Add User</span></a>
+    <a class="nav-link" href="display-user.html"><i class="bi bi-people-fill"></i> <span>Display User</span></a>
+    <a class="nav-link" href="remove-user.html"><i class="bi bi-person-dash-fill"></i> <span>Remove User</span></a>
+    <a class="nav-link" href="update-user.html"><i class="bi bi-pencil-square"></i> <span>Update User</span></a>
+
+    <span class="nav-section-title">CRM & Operations (Display All)</span>
+    <a class="nav-link" href="display-enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span> <span class="nav-badge">128</span></a>
+    <a class="nav-link" href="display-followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span> <span class="nav-badge">86</span></a>
+    <a class="nav-link" href="display-lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span> <span class="nav-badge">56</span></a>
+    <a class="nav-link" href="display-flatsale.html"><i class="bi bi-building-check"></i> <span>Flat Sale</span></a>
+
+    <span class="nav-section-title">Accounts & Finance</span>
+    <a class="nav-link" href="display-daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="display-pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash</span></a>
+    <a class="nav-link" href="display-payments.html"><i class="bi bi-truck"></i> <span>Vendor Payment</span></a>
+    <a class="nav-link" href="display-payments.html"><i class="bi bi-wallet2"></i> <span>Employee Payment</span></a>
+    <a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-fill"></i> <span>Reports</span></a>
+
+    <!-- Live Sync Engine Badge -->
+    <div class="mt-4 px-2">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:0.7rem 0.85rem;">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <span class="text-white-50" style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">System Status</span>
+          <span class="badge bg-success-subtle text-success" style="font-size:0.65rem;padding:2px 6px;">Live v2.6</span>
+        </div>
+        <div class="text-white small fw-bold d-flex align-items-center gap-2">
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;"></span>
+          <span style="font-size:0.78rem;">CRMStore Synced</span>
+        </div>
+      </div>
+    </div>
+
+    <a class="nav-link logout-link mt-3" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Welcome back, Admin User! 👋</h1>
+      <div class="topbar-breadcrumb">
+        <span>Overview of Skyline Real Estate Operations</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="pill-widget live-date">
+        <i class="bi bi-calendar3"></i> 07 August 2026 &middot; Thursday
+      </div>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img"><i class="bi bi-person-fill"></i></div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Admin User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Super Admin</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5 KPI Stat Cards (Matching PDF 2 Page 1) -->
+  <section class="row g-3 mb-4">
+    <!-- Total Enquiries -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-blue">
+        <div class="icon-circle" style="background:#eff6ff;color:#2563eb;">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <div class="value" id="statEnquiries">128</div>
+        <div class="label">Total Enquiries</div>
+        <div class="stat-trend trend-info"><i class="bi bi-graph-up-arrow"></i> +14.2% vs last month</div>
+        <a href="display-enquiry.html" class="card-footer-link" style="color:#2563eb;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Follow Ups -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-green">
+        <div class="icon-circle" style="background:#ecfdf5;color:#10b981;">
+          <i class="bi bi-telephone-fill"></i>
+        </div>
+        <div class="value" id="statFollowups">86</div>
+        <div class="label">Follow Ups</div>
+        <div class="stat-trend trend-up"><i class="bi bi-check2-circle"></i> 92% SLA On-Time</div>
+        <a href="display-followup.html" class="card-footer-link" style="color:#10b981;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Leads -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-purple">
+        <div class="icon-circle" style="background:#f5f3ff;color:#8b5cf6;">
+          <i class="bi bi-bullseye"></i>
+        </div>
+        <div class="value" id="statLeads">56</div>
+        <div class="label">Active Leads</div>
+        <div class="stat-trend trend-purple"><i class="bi bi-fire"></i> 24 High Intent</div>
+        <a href="display-lead.html" class="card-footer-link" style="color:#8b5cf6;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Day Book -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-orange">
+        <div class="icon-circle" style="background:#fff7ed;color:#f97316;">
+          <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
+        <div class="value" id="statDaybook">₹2,73,630</div>
+        <div class="label">Day Book Net</div>
+        <div class="stat-trend trend-orange"><i class="bi bi-arrow-up-right"></i> +₹42.5K Today</div>
+        <a href="display-daybook.html" class="card-footer-link" style="color:#ea580c;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Petty Cash -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-teal">
+        <div class="icon-circle" style="background:#ecfeff;color:#0891b2;">
+          <i class="bi bi-cash-coin"></i>
+        </div>
+        <div class="value" id="statPettyCash">₹1,155</div>
+        <div class="label">Petty Cash Vouchers</div>
+        <div class="stat-trend trend-teal"><i class="bi bi-shield-check"></i> Balanced</div>
+        <a href="display-pettycash.html" class="card-footer-link" style="color:#0891b2;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Analytics & Revenue Intelligence Section (Chart.js) -->
+  <section class="row g-4 mb-4">
+    <!-- Left: Revenue & Booking Velocity Area Chart -->
+    <div class="col-12 col-xl-8">
+      <div class="card-panel h-100 mb-0">
+        <div class="card-panel-header">
+          <div>
+            <h2 class="card-panel-title">
+              <i class="bi bi-graph-up-arrow text-primary"></i> Property Sales & Booking Velocity
+            </h2>
+            <small class="text-muted">Monthly booking collections & sales revenue (in ₹ Lakhs)</small>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill">
+              <i class="bi bi-arrow-up-right me-1"></i>+24.8% vs last quarter
+            </span>
+          </div>
+        </div>
+        <div style="height: 290px; position: relative;">
+          <canvas id="revenueSplineChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Lead Sources Doughnut Chart -->
+    <div class="col-12 col-xl-4">
+      <div class="card-panel h-100 mb-0">
+        <div class="card-panel-header">
+          <div>
+            <h2 class="card-panel-title">
+              <i class="bi bi-pie-chart-fill text-purple"></i> Inquiries By Channel
+            </h2>
+            <small class="text-muted">Customer acquisition sources</small>
+          </div>
+        </div>
+        <div style="height: 220px; position: relative;">
+          <canvas id="sourceDonutChart"></canvas>
+        </div>
+        <div class="d-flex justify-content-around text-center pt-3 border-top mt-2">
+          <div>
+            <div class="fw-bold text-primary small">Website</div>
+            <span class="small text-muted fw-semibold">42%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-success small">Walk In</div>
+            <span class="small text-muted fw-semibold">28%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-warning small">Referral</div>
+            <span class="small text-muted fw-semibold">18%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-danger small">Social</div>
+            <span class="small text-muted fw-semibold">12%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Priority Activity & High-Intent Pipeline Feed -->
+  <section class="card-panel mb-4">
+    <div class="card-panel-header">
+      <div>
+        <h2 class="card-panel-title">
+          <i class="bi bi-stars text-primary"></i> Priority Deal Flow &amp; High-Value Leads
+        </h2>
+        <small class="text-muted">Real-time prospective client pipeline synced from live database</small>
+      </div>
+      <a href="display-lead.html" class="btn btn-outline-secondary btn-sm">
+        <span>View Full Pipeline</span> <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Prospective Client</th>
+            <th>Contact</th>
+            <th>Project Interest</th>
+            <th>Unit Type</th>
+            <th>Budget Tier</th>
+            <th>Stage / Status</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody id="vipLeadsTableBody">
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-indigo">RM</div>
+                <div>
+                  <div class="fw-bold text-dark">Rahul Mehta</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Source: Website VIP</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9876543210</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="badge bg-info-subtle text-info fw-bold">2 BHK Premium</span></td>
+            <td><span class="fw-bold text-success">₹45,00,000</span></td>
+            <td><span class="badge-status badge-new">New Inquiry</span></td>
+            <td class="text-end pe-3">
+              <a href="display-enquiry.html" class="btn btn-primary btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Dossier
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-purple">NS</div>
+                <div>
+                  <div class="fw-bold text-dark">Neha Sharma</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Source: Walk In</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9123456780</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="badge bg-info-subtle text-info fw-bold">3 BHK Luxury</span></td>
+            <td><span class="fw-bold text-success">₹52,00,000</span></td>
+            <td><span class="badge-status badge-followup">Followup Scheduled</span></td>
+            <td class="text-end pe-3">
+              <a href="display-followup.html" class="btn btn-primary btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Dossier
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-emerald">VS</div>
+                <div>
+                  <div class="fw-bold text-dark">Vikas Sharma</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Source: Channel Partner</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9988776655</td>
+            <td><span class="badge bg-light text-dark border">Sunrise Residency</span></td>
+            <td><span class="badge bg-info-subtle text-info fw-bold">3 BHK Penthouse</span></td>
+            <td><span class="fw-bold text-success">₹78,00,000</span></td>
+            <td><span class="badge-status badge-active">Site Visit Completed</span></td>
+            <td class="text-end pe-3">
+              <a href="display-lead.html" class="btn btn-primary btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Dossier
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-rose">AK</div>
+                <div>
+                  <div class="fw-bold text-dark">Amit Kulkarni</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Source: Referral</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9822012345</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="badge bg-info-subtle text-info fw-bold">Unit #A-402</span></td>
+            <td><span class="fw-bold text-success">₹48,00,000</span></td>
+            <td><span class="badge-status badge-converted">Token Booked</span></td>
+            <td class="text-end pe-3">
+              <a href="display-flatsale.html" class="btn btn-success btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-check2-circle me-1"></i> Agreement
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Quick Actions Grid (10 tiles matching PDF 2 Page 1) -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-lightning-charge-fill text-warning"></i> Quick Actions
+      </h2>
+      <span class="text-muted small">One-click operational shortcuts</span>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="add-user.html">
+          <span class="qa-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-person-plus-fill"></i></span>
+          <span>Add User</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-user.html">
+          <span class="qa-icon" style="background:#ecfdf5;color:#10b981;"><i class="bi bi-people-fill"></i></span>
+          <span>Display User</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="remove-user.html">
+          <span class="qa-icon" style="background:#fee2e2;color:#ef4444;"><i class="bi bi-person-dash-fill"></i></span>
+          <span>Remove User</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="update-user.html">
+          <span class="qa-icon" style="background:#f5f3ff;color:#8b5cf6;"><i class="bi bi-pencil-square"></i></span>
+          <span>Update User</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-enquiry.html">
+          <span class="qa-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-card-list"></i></span>
+          <span>All Enquiry</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-followup.html">
+          <span class="qa-icon" style="background:#ecfdf5;color:#10b981;"><i class="bi bi-telephone-fill"></i></span>
+          <span>Follow Up</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-lead.html">
+          <span class="qa-icon" style="background:#fdf2f8;color:#db2777;"><i class="bi bi-bullseye"></i></span>
+          <span>Lead</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-daybook.html">
+          <span class="qa-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-journal-text"></i></span>
+          <span>Day Book</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-pettycash.html">
+          <span class="qa-icon" style="background:#ecfeff;color:#0891b2;"><i class="bi bi-cash-coin"></i></span>
+          <span>Petty Cash</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-payments.html">
+          <span class="qa-icon" style="background:#f5f3ff;color:#8b5cf6;"><i class="bi bi-truck"></i></span>
+          <span>Vendor Payment</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-payments.html">
+          <span class="qa-icon" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-person-badge-fill"></i></span>
+          <span>Employee Payment</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <a class="quick-action" href="display-flatsale.html">
+          <span class="qa-icon" style="background:#fdf2f8;color:#db2777;"><i class="bi bi-building-check"></i></span>
+          <span>Flat Sale</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function initAdminCharts() {
+  const ctxRevenue = document.getElementById('revenueSplineChart');
+  if (ctxRevenue) {
+    const ctx = ctxRevenue.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 260);
+    gradient.addColorStop(0, 'rgba(37, 99, 235, 0.35)');
+    gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        datasets: [
+          {
+            label: 'Total Sales (₹ Lakhs)',
+            data: [42, 65, 58, 84, 96, 128, 175],
+            borderColor: '#2563eb',
+            borderWidth: 3,
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.42,
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: '#2563eb',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 7
+          },
+          {
+            label: 'Token Collections (₹ Lakhs)',
+            data: [12, 18, 15, 24, 30, 38, 52],
+            borderColor: '#10b981',
+            borderWidth: 2.5,
+            borderDash: [5, 5],
+            tension: 0.4,
+            fill: false,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { font: { family: 'Plus Jakarta Sans', weight: '600', size: 12 } }
+          }
+        },
+        scales: {
+          y: { 
+            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+            ticks: { font: { family: 'Plus Jakarta Sans', weight: '500' } }
+          },
+          x: { 
+            grid: { display: false },
+            ticks: { font: { family: 'Plus Jakarta Sans', weight: '600' } }
+          }
+        }
+      }
+    });
+  }
+
+  const ctxDonut = document.getElementById('sourceDonutChart');
+  if (ctxDonut) {
+    new Chart(ctxDonut, {
+      type: 'doughnut',
+      data: {
+        labels: ['Website', 'Walk In', 'Referral', 'Social'],
+        datasets: [{
+          data: [42, 28, 18, 12],
+          backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#f43f5e'],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        cutout: '72%'
+      }
+    });
+  }
+}
+
+function refreshAdminDashboard() {
+  if (!window.CRMStore) return;
+  const enqs = CRMStore.getEnquiries();
+  const followups = CRMStore.getFollowups();
+  const leads = CRMStore.getLeads();
+  const daybook = CRMStore.getDaybook();
+  const petty = CRMStore.getPettyCash();
+  const summary = CRMStore.getFinancialSummary();
+
+  const elEnq = document.getElementById("statEnquiries");
+  if (elEnq) elEnq.textContent = enqs.length;
+
+  const elFoll = document.getElementById("statFollowups");
+  if (elFoll) elFoll.textContent = followups.length;
+
+  const elLead = document.getElementById("statLeads");
+  if (elLead) elLead.textContent = leads.length;
+
+  const elDay = document.getElementById("statDaybook");
+  if (elDay) {
+    const net = daybook.length > 0 ? daybook[0].balance : summary.netBalance;
+    elDay.textContent = "₹" + Number(net).toLocaleString('en-IN');
+  }
+
+  const elPetty = document.getElementById("statPettyCash");
+  if (elPetty) {
+    let pSum = 0;
+    petty.forEach(p => pSum += Number(p.amount) || 0);
+    elPetty.textContent = "₹" + Number(pSum).toLocaleString('en-IN');
+  }
+
+  // Update sidebar badge numbers
+  const navBadges = document.querySelectorAll(".sidebar-nav .nav-badge");
+  if (navBadges.length >= 3) {
+    navBadges[0].textContent = enqs.length;
+    navBadges[1].textContent = followups.length;
+    navBadges[2].textContent = leads.length;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  refreshAdminDashboard();
+  initAdminCharts();
+});
+window.addEventListener("crm_data_updated", refreshAdminDashboard);
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Reports & Summary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar (Admin Theme) -->
+<nav class="sidebar theme-admin">
+  <a class="brand" href="admin-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#60a5fa;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Admin User</div>
+      <div class="role"><span class="dot"></span>Super Admin</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <span class="nav-section-title">Core</span>
+    <a class="nav-link" href="admin-dashboard.html">
+      <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+    </a>
+
+    <span class="nav-section-title">User Management</span>
+    <a class="nav-link" href="add-user.html"><i class="bi bi-person-plus-fill"></i> <span>Add User</span></a>
+    <a class="nav-link" href="display-user.html"><i class="bi bi-people-fill"></i> <span>Display User</span></a>
+    <a class="nav-link" href="remove-user.html"><i class="bi bi-person-dash-fill"></i> <span>Remove User</span></a>
+    <a class="nav-link" href="update-user.html"><i class="bi bi-pencil-square"></i> <span>Update User</span></a>
+
+    <span class="nav-section-title">CRM & Operations (Display All)</span>
+    <a class="nav-link" href="display-enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="display-followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="display-lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="display-flatsale.html"><i class="bi bi-building-check"></i> <span>Flat Sale</span></a>
+
+    <span class="nav-section-title">Accounts & Finance</span>
+    <a class="nav-link" href="display-daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="display-pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash</span></a>
+    <a class="nav-link" href="display-payments.html"><i class="bi bi-truck"></i> <span>Payments</span></a>
+    <a class="nav-link active" href="reports.html"><i class="bi bi-bar-chart-fill"></i> <span>Reports</span></a>
+
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Financial Reports</h1>
+      <div class="topbar-breadcrumb">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Day Book Summary Report</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="pill-widget live-date">
+        <i class="bi bi-calendar3"></i> 07 August 2026 &middot; Thursday
+      </div>
+
+      <div class="topbar-user">
+        <div class="user-img"><i class="bi bi-person-fill"></i></div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Admin User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Super Admin</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cityscape Hero Banner (Matching PDF 2 Page 8) -->
+  <div class="report-hero-banner">
+    <div class="report-hero-content">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="badge bg-white text-primary px-3 py-2 rounded-pill fw-bold">
+          <i class="bi bi-calendar3 me-1"></i> 07/08/2026
+        </span>
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-shield-check text-info fs-5"></i>
+          <span class="small text-white-50">Audited Financial Journal</span>
+        </div>
+      </div>
+      <h2 class="display-6 fw-bold mb-1">Day Book Financial Report</h2>
+      <p class="text-white-50 mb-0">Consolidated overview of client collections, payroll disbursements, and vendor settlements</p>
+    </div>
+  </div>
+
+  <!-- Day Book Summary Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <div class="d-flex align-items-center gap-2">
+        <div class="icon-circle mb-0" style="width:36px;height:36px;background:#eff6ff;color:#2563eb;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+          <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
+        <div>
+          <h2 class="card-panel-title">Day Book Summary</h2>
+          <small class="text-muted">Statement for 07 August 2026</small>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">
+        <i class="bi bi-printer me-1"></i> Print Statement
+      </button>
+    </div>
+
+    <!-- 6 Financial Cards (Matching PDF 2 Page 8) -->
+    <div class="row g-3 mb-4">
+      <!-- 1. Client Payment -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card border text-center p-3">
+          <div class="icon-circle mx-auto" style="background:#ecfdf5;color:#10b981;">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div class="value" id="repClientPayment" style="font-size:1.25rem;color:#10b981;">₹20,00,000</div>
+          <div class="label mb-2">Client Payment</div>
+          <span class="badge bg-light text-muted border small"><i class="bi bi-credit-card me-1"></i>Card / Bank</span>
+        </div>
+      </div>
+
+      <!-- 2. Employee Payment -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card border text-center p-3">
+          <div class="icon-circle mx-auto" style="background:#fee2e2;color:#ef4444;">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div class="value" id="repEmployeePayment" style="font-size:1.25rem;color:#ef4444;">₹2,00,000</div>
+          <div class="label mb-2">Employee Payment</div>
+          <span class="badge bg-light text-muted border small"><i class="bi bi-wallet2 me-1"></i>Payroll Advance</span>
+        </div>
+      </div>
+
+      <!-- 3. Vendor Payment -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card border text-center p-3">
+          <div class="icon-circle mx-auto" style="background:#f5f3ff;color:#8b5cf6;">
+            <i class="bi bi-truck"></i>
+          </div>
+          <div class="value" id="repVendorPayment" style="font-size:1.25rem;color:#8b5cf6;">₹1,50,000</div>
+          <div class="label mb-2">Vendor Payment</div>
+          <span class="badge bg-light text-muted border small"><i class="bi bi-box-seam me-1"></i>Material PO</span>
+        </div>
+      </div>
+
+      <!-- 4. Expenses -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card border text-center p-3">
+          <div class="icon-circle mx-auto" style="background:#fff7ed;color:#ea580c;">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <div class="value" id="repExpenses" style="font-size:1.25rem;color:#ea580c;">₹50,000</div>
+          <div class="label mb-2">Expenses</div>
+          <span class="badge bg-light text-muted border small"><i class="bi bi-dash-circle me-1"></i>Total Expenses</span>
+        </div>
+      </div>
+
+      <!-- 5. Income -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card border text-center p-3">
+          <div class="icon-circle mx-auto" style="background:#eff6ff;color:#2563eb;">
+            <i class="bi bi-graph-up-arrow"></i>
+          </div>
+          <div class="value" id="repIncome" style="font-size:1.25rem;color:#2563eb;">₹16,00,000</div>
+          <div class="label mb-2">Income</div>
+          <span class="badge bg-light text-muted border small"><i class="bi bi-plus-circle me-1"></i>Total Income</span>
+        </div>
+      </div>
+
+      <!-- 6. Net Balance -->
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card text-center p-3 text-white" style="background:linear-gradient(180deg, #0f172a 0%, #1e293b 100%);">
+          <div class="icon-circle mx-auto" style="background:rgba(255,255,255,0.15);color:#fff;">
+            <i class="bi bi-bank"></i>
+          </div>
+          <div class="value text-white" id="repNetBalance" style="font-size:1.25rem;">₹2,90,000</div>
+          <div class="label text-white-50 mb-2">Net Balance</div>
+          <span class="badge bg-white bg-opacity-25 text-white small">Income - Expenses</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Informational Alert Banner (Matching PDF 2 Page 8) -->
+    <div class="alert alert-light border d-flex align-items-center gap-3 p-3 mb-0" style="border-radius:12px;background:#f8fafc;">
+      <i class="bi bi-info-circle-fill text-primary fs-4"></i>
+      <span class="small text-muted">
+        This is the consolidated summary of all transactions recorded for today. Keep all payment vouchers, client receipts, and vendor invoices reconciled daily.
+      </span>
+    </div>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function refreshReports() {
+  if (!window.CRMStore) return;
+  const s = CRMStore.getFinancialSummary();
+
+  const cPay = document.getElementById("repClientPayment");
+  if (cPay) cPay.textContent = "₹" + Number(s.clientPaymentTotal).toLocaleString('en-IN');
+
+  const ePay = document.getElementById("repEmployeePayment");
+  if (ePay) ePay.textContent = "₹" + Number(s.employeePaymentTotal).toLocaleString('en-IN');
+
+  const vPay = document.getElementById("repVendorPayment");
+  if (vPay) vPay.textContent = "₹" + Number(s.vendorPaymentTotal).toLocaleString('en-IN');
+
+  const exp = document.getElementById("repExpenses");
+  if (exp) exp.textContent = "₹" + Number(s.totalExpenses).toLocaleString('en-IN');
+
+  const inc = document.getElementById("repIncome");
+  if (inc) inc.textContent = "₹" + Number(s.totalIncome).toLocaleString('en-IN');
+
+  const net = document.getElementById("repNetBalance");
+  if (net) net.textContent = "₹" + Number(s.netBalance).toLocaleString('en-IN');
+}
+
+document.addEventListener("DOMContentLoaded", refreshReports);
+window.addEventListener("crm_data_updated", refreshReports);
+</script>
+</body>
+</html>

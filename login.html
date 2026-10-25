@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Enterprise Real Estate Suite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="p-0 m-0">
+
+<div class="login-split-page">
+  <!-- Left Side: Architectural Showcase & Enterprise Stats -->
+  <div class="login-split-hero">
+    <div class="login-hero-glow-orb glow-orb-1"></div>
+    <div class="login-hero-glow-orb glow-orb-2"></div>
+
+    <!-- Top Header -->
+    <div class="login-hero-content">
+      <a href="index.html" class="login-hero-brand mb-4">
+        <div class="logo-icon">
+          <i class="bi bi-building"></i>
+        </div>
+        <span>Skyline <span style="font-weight:400;color:#60a5fa;">CRM</span></span>
+      </a>
+
+      <div class="mt-4">
+        <div class="login-hero-badge">
+          <i class="bi bi-shield-check text-info"></i> Enterprise Real Estate OS &bull; v2.6
+        </div>
+        <h1 class="login-hero-heading">
+          Intelligent Property Lifecycle &amp; <span>Capital Flow OS</span>
+        </h1>
+        <p class="login-hero-subtext">
+          High-velocity portfolio orchestration, automated unit bookings, integrated Day Book reconciliation, and complete RERA-compliant operations for luxury real estate leaders.
+        </p>
+      </div>
+
+      <!-- Live Metrics Showcase -->
+      <div class="login-hero-metrics">
+        <div class="login-metric-pill">
+          <div class="val text-primary-subtle">₹480+ Cr</div>
+          <div class="desc">Portfolio Value</div>
+        </div>
+        <div class="login-metric-pill">
+          <div class="val text-success-subtle">2,480+</div>
+          <div class="desc">Units Sold</div>
+        </div>
+        <div class="login-metric-pill">
+          <div class="val text-warning-subtle">99.4%</div>
+          <div class="desc">Agreement Speed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Social Proof -->
+    <div class="login-hero-footer">
+      <div class="login-avatar-stack">
+        <div class="stack-avatar avatar-blue">RM</div>
+        <div class="stack-avatar avatar-purple">AK</div>
+        <div class="stack-avatar avatar-emerald">NS</div>
+        <div class="stack-avatar avatar-amber">VS</div>
+      </div>
+      <div>
+        <div class="small fw-bold text-white">Trusted by 1,200+ Realty Professionals</div>
+        <div class="text-white-50" style="font-size:0.75rem;">Active across 18 flagship developments &bull; Zero latency sync</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Luxury Authentication Card -->
+  <div class="login-split-form-col">
+    <div class="login-form-box">
+      <!-- Form Header -->
+      <div class="mb-4 text-center">
+        <h2 class="fw-bolder text-dark mb-1" style="font-size:1.65rem;letter-spacing:-0.02em;">Welcome Back</h2>
+        <p class="text-muted small">Select your role to access your dedicated workspace</p>
+      </div>
+
+      <!-- Role Selector Tabs -->
+      <div class="role-tabs" id="roleTabs">
+        <button type="button" class="role-tab-btn active" data-role="admin" onclick="selectRole('admin')">
+          <i class="bi bi-shield-lock-fill"></i>
+          <span>Super Admin</span>
+        </button>
+        <button type="button" class="role-tab-btn" data-role="employee" onclick="selectRole('employee')">
+          <i class="bi bi-briefcase-fill"></i>
+          <span>Sales Exec</span>
+        </button>
+        <button type="button" class="role-tab-btn" data-role="agent" onclick="selectRole('agent')">
+          <i class="bi bi-person-badge-fill"></i>
+          <span>Partner</span>
+        </button>
+      </div>
+
+      <!-- One-Click Instant Demo Pills -->
+      <div class="demo-pills-bar">
+        <button type="button" class="demo-pill" onclick="quickLoginDemo('admin')">
+          <i class="bi bi-lightning-charge-fill text-warning"></i>
+          <span>1-Click Admin</span>
+        </button>
+        <button type="button" class="demo-pill" onclick="quickLoginDemo('employee')">
+          <i class="bi bi-lightning-charge-fill text-purple"></i>
+          <span>1-Click Executive</span>
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <!-- Hidden input storing selected role -->
+        <input type="hidden" id="userType" value="admin">
+
+        <!-- Username / Email Field -->
+        <div class="mb-3">
+          <label class="form-label" for="userEmail">Account Identity</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-muted" style="border-radius:12px 0 0 12px;border-color:var(--crm-border);">
+              <i class="bi bi-person-circle"></i>
+            </span>
+            <input type="text" class="form-control border-start-0 ps-1" id="userEmail" value="admin@skylinecrm.com" placeholder="Enter username or email" required style="border-radius:0 12px 12px 0;">
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0" for="userPassword">Security Password</label>
+            <a href="#" class="small text-decoration-none text-primary fw-semibold" style="font-size:0.75rem;">Forgot Password?</a>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-muted" style="border-radius:12px 0 0 12px;border-color:var(--crm-border);">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+            <input type="password" class="form-control border-start-0 border-end-0 ps-1" id="userPassword" placeholder="Enter your password" value="password123" required>
+            <span class="input-group-text bg-white border-start-0 text-muted" style="border-radius:0 12px 12px 0;cursor:pointer;border-color:var(--crm-border);" onclick="togglePasswordVisibility()">
+              <i class="bi bi-eye" id="togglePassIcon"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="form-check mb-0">
+            <input class="form-check-input" type="checkbox" id="remember" checked>
+            <label class="form-check-label small text-muted" for="remember">Keep me logged in</label>
+          </div>
+          <span class="badge bg-success-subtle text-success small fw-semibold px-2 py-1 rounded-pill">
+            <i class="bi bi-shield-check me-1"></i>SSL Secured
+          </span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-shimmer w-100 py-3 fs-6 shadow-sm mb-3" id="loginBtn">
+          <span id="loginBtnText">Sign In as Super Admin</span>
+          <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </form>
+
+      <!-- Security Trust Footer -->
+      <div class="text-center mt-3 pt-3 border-top">
+        <small class="text-muted d-flex align-items-center justify-content-center gap-2" style="font-size:0.75rem;">
+          <i class="bi bi-patch-check-fill text-primary"></i>
+          <span>RERA Compliant &bull; 256-bit Encryption &bull; ISO 27001</span>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/crm-store.js"></script>
+<script>
+function selectRole(role) {
+  document.getElementById("userType").value = role;
+  
+  // Update role buttons
+  const buttons = document.querySelectorAll(".role-tab-btn");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("data-role") === role) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  // Update button text & email placeholder
+  const emailInput = document.getElementById("userEmail");
+  const btnText = document.getElementById("loginBtnText");
+  if (role === "admin") {
+    emailInput.value = "admin@skylinecrm.com";
+    btnText.textContent = "Sign In as Super Admin";
+  } else if (role === "employee") {
+    emailInput.value = "rajesh.sharma@skylinecrm.com";
+    btnText.textContent = "Sign In as Sales Executive";
+  } else {
+    emailInput.value = "partner@skylinecrm.com";
+    btnText.textContent = "Sign In as Channel Partner";
+  }
+}
+
+function quickLoginDemo(role) {
+  selectRole(role);
+  // Auto-submit after micro-delay for visual feedback
+  setTimeout(() => {
+    document.getElementById("loginForm").dispatchEvent(new Event("submit", { cancelable: true }));
+  }, 150);
+}
+
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  const type = document.getElementById("userType").value;
+  const name = type === "admin" ? "Admin User" : (type === "employee" ? "Employee User" : "Agent User");
+  const role = type === "admin" ? "Super Admin" : (type === "employee" ? "Sales Executive" : "External Partner");
+
+  CRMStore.setSession(type, name, role);
+
+  if (type === "admin") {
+    window.location.href = "admin-dashboard.html";
+  } else {
+    window.location.href = "employee-dashboard.html";
+  }
+}
+
+function togglePasswordVisibility() {
+  const passInput = document.getElementById("userPassword");
+  const icon = document.getElementById("togglePassIcon");
+  if (passInput.type === "password") {
+    passInput.type = "text";
+    icon.classList.remove("bi-eye");
+    icon.classList.add("bi-eye-slash");
+  } else {
+    passInput.type = "password";
+    icon.classList.remove("bi-eye-slash");
+    icon.classList.add("bi-eye");
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

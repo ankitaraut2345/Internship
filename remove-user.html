@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Remove User</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar -->
+<nav class="sidebar theme-admin">
+  <a class="brand" href="admin-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#60a5fa;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Admin User</div>
+      <div class="role"><span class="dot"></span>Super Admin</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <span class="nav-section-title">Core</span>
+    <a class="nav-link" href="admin-dashboard.html">
+      <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+    </a>
+
+    <span class="nav-section-title">User Management</span>
+    <a class="nav-link" href="add-user.html"><i class="bi bi-person-plus-fill"></i> <span>Add User</span></a>
+    <a class="nav-link" href="display-user.html"><i class="bi bi-people-fill"></i> <span>Display User</span></a>
+    <a class="nav-link active" href="remove-user.html"><i class="bi bi-person-dash-fill"></i> <span>Remove User</span></a>
+    <a class="nav-link" href="update-user.html"><i class="bi bi-pencil-square"></i> <span>Update User</span></a>
+
+    <span class="nav-section-title">CRM & Operations (Display All)</span>
+    <a class="nav-link" href="display-enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="display-followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="display-lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="display-flatsale.html"><i class="bi bi-building-check"></i> <span>Flat Sale</span></a>
+
+    <span class="nav-section-title">Accounts & Finance</span>
+    <a class="nav-link" href="display-daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="display-pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash</span></a>
+    <a class="nav-link" href="display-payments.html"><i class="bi bi-truck"></i> <span>Payments</span></a>
+    <a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-fill"></i> <span>Reports</span></a>
+
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Remove User Access</h1>
+      <div class="topbar-breadcrumb">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Revoke Accounts</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" class="form-control" placeholder="Search user to remove...">
+      </div>
+
+      <div class="topbar-user">
+        <div class="user-img"><i class="bi bi-person-fill"></i></div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Admin User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Super Admin</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Table Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title text-danger">
+        <i class="bi bi-person-x-fill text-danger"></i> Select User to Revoke
+      </h2>
+      <span class="badge bg-danger-subtle text-danger fw-bold px-3 py-1 rounded-pill">Administrative Action</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle" id="userTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <div class="fw-semibold">Anjali Sharma</div>
+              <small class="text-muted"><i class="bi bi-telephone me-1"></i>9876543211</small>
+            </td>
+            <td>anjali.sharma@skyline.com</td>
+            <td><span class="badge bg-primary-subtle text-primary fw-bold">Employee</span></td>
+            <td><span class="badge-status badge-active">Active</span></td>
+            <td class="text-end pe-3">
+              <button class="btn btn-sm btn-outline-danger shadow-sm" onclick="confirmRemove(this, 'Anjali Sharma')">
+                <i class="bi bi-trash me-1"></i> Remove User
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <div class="fw-semibold">Vikas Patil</div>
+              <small class="text-muted"><i class="bi bi-telephone me-1"></i>9876543212</small>
+            </td>
+            <td>vikas.patil@skyline.com</td>
+            <td><span class="badge bg-primary-subtle text-primary fw-bold">Employee</span></td>
+            <td><span class="badge-status badge-active">Active</span></td>
+            <td class="text-end pe-3">
+              <button class="btn btn-sm btn-outline-danger shadow-sm" onclick="confirmRemove(this, 'Vikas Patil')">
+                <i class="bi bi-trash me-1"></i> Remove User
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              <div class="fw-semibold">Rohan Deshmukh</div>
+              <small class="text-muted"><i class="bi bi-telephone me-1"></i>9876543213</small>
+            </td>
+            <td>rohan.d@skyline.com</td>
+            <td><span class="badge bg-warning-subtle text-warning-emphasis fw-bold">Agent User</span></td>
+            <td><span class="badge-status badge-active">Active</span></td>
+            <td class="text-end pe-3">
+              <button class="btn btn-sm btn-outline-danger shadow-sm" onclick="confirmRemove(this, 'Rohan Deshmukh')">
+                <i class="bi bi-trash me-1"></i> Remove User
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              <div class="fw-semibold">Sneha Kulkarni</div>
+              <small class="text-muted"><i class="bi bi-telephone me-1"></i>9876543214</small>
+            </td>
+            <td>sneha.k@skyline.com</td>
+            <td><span class="badge bg-warning-subtle text-warning-emphasis fw-bold">Agent User</span></td>
+            <td><span class="badge-status badge-inactive">Inactive</span></td>
+            <td class="text-end pe-3">
+              <button class="btn btn-sm btn-outline-danger shadow-sm" onclick="confirmRemove(this, 'Sneha Kulkarni')">
+                <i class="bi bi-trash me-1"></i> Remove User
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Footer -->
+    <div class="pagination-container">
+      <small class="text-muted fw-semibold">Showing 1 to 4 of 12 entries</small>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<!-- Modern Delete Confirmation Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+    <div class="modal-content text-center p-4 border-0 shadow-lg" style="border-radius:24px;">
+      <div class="mb-3" style="width:64px;height:64px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.85rem;">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+      </div>
+      <h4 class="fw-bold mb-2">Remove this user?</h4>
+      <p class="text-muted small mb-4">
+        You are about to revoke <span id="userNameSpan" class="fw-bold text-dark"></span> from Skyline CRM. This action will terminate active sessions.
+      </p>
+      <div class="d-flex justify-content-center gap-2">
+        <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger px-4 shadow" onclick="doRemove()">
+          <i class="bi bi-trash me-1"></i> Yes, Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+  let targetUserId = null;
+  let targetRow = null;
+
+  function renderRemoveUserTable() {
+    const users = CRMStore.getUsers();
+    const tbody = document.querySelector("#userTable tbody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    users.forEach((u, i) => {
+      const isEmp = u.type === "Employee";
+      const badgeClass = isEmp ? "bg-primary-subtle text-primary" : (u.type === "Admin" ? "bg-primary text-white" : "bg-warning-subtle text-warning-emphasis");
+      const statusClass = u.status === "Active" ? "badge-active" : "badge-inactive";
+
+      tbody.innerHTML += `
+        <tr>
+          <td>${i + 1}</td>
+          <td>
+            <div class="fw-semibold">${u.name}</div>
+            <small class="text-muted"><i class="bi bi-telephone me-1"></i>${u.mobile}</small>
+          </td>
+          <td>${u.email}</td>
+          <td><span class="badge ${badgeClass} fw-bold">${u.type}</span></td>
+          <td><span class="badge-status ${statusClass}">${u.status}</span></td>
+          <td class="text-end pe-3">
+            <button class="btn btn-sm btn-outline-danger shadow-sm" onclick="confirmRemove(this, '${u.id}', '${u.name}')">
+              <i class="bi bi-trash me-1"></i> Remove User
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  function confirmRemove(btn, id, name) {
+    targetRow = btn.closest("tr");
+    targetUserId = id;
+    document.getElementById("userNameSpan").textContent = name;
+    new bootstrap.Modal(document.getElementById("confirmModal")).show();
+  }
+
+  function doRemove() {
+    if (targetUserId) {
+      CRMStore.deleteUser(targetUserId);
+      showToast(`User removed from Skyline CRM!`, "danger");
+      bootstrap.Modal.getInstance(document.getElementById("confirmModal")).hide();
+      renderRemoveUserTable();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", renderRemoveUserTable);
+</script>
+</body>
+</html>

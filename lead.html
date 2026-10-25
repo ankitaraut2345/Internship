@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Lead Pipeline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar -->
+<nav class="sidebar theme-employee">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#c084fc;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-link" href="employee-dashboard.html"><i class="bi bi-grid-fill"></i> <span>Dashboard</span></a>
+    <a class="nav-link" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link active" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Sales Lead Pipeline</h1>
+      <div class="topbar-breadcrumb">
+        <a href="employee-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Prospective Property Buyers</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <button class="btn btn-purple shadow" data-bs-toggle="modal" data-bs-target="#addNewLeadModal">
+        <i class="bi bi-person-plus-fill me-1"></i> Add Lead
+      </button>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-purple-light);color:var(--crm-purple);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Sales Executive</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter Card Panel (Matching PDF 2 Page 3) -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-funnel-fill text-purple"></i> Filter Sales Leads
+      </h2>
+      <span class="text-muted small">Filter by pipeline stage, lead acquisition source and date</span>
+    </div>
+
+    <form id="leadFilterForm" onsubmit="event.preventDefault(); applyLeadFilter();">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-3">
+          <label class="form-label">Lead Status</label>
+          <select id="filterStatus" class="form-select">
+            <option value="All" selected>All Statuses</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Follow Up">Follow Up</option>
+            <option value="Converted">Converted</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label class="form-label">Acquisition Source</label>
+          <select id="filterSource" class="form-select">
+            <option value="All" selected>All Sources</option>
+            <option value="Website">Website</option>
+            <option value="Walk In">Walk In</option>
+            <option value="Referral">Referral</option>
+            <option value="Just Dial">Just Dial</option>
+            <option value="Facebook">Facebook</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-2">
+          <label class="form-label">Assigned Executive</label>
+          <select id="filterAssignee" class="form-select">
+            <option value="All" selected>All Executives</option>
+            <option value="Anjali Sharma">Anjali Sharma</option>
+            <option value="Vikas Patil">Vikas Patil</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-4 d-flex gap-2">
+          <button type="submit" class="btn btn-purple flex-fill shadow">
+            <i class="bi bi-funnel"></i> Filter
+          </button>
+          <button type="button" class="btn btn-outline-secondary" onclick="resetLeadFilter()">
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Lead List Table Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-bullseye text-primary"></i> Active Lead Pipeline
+      </h2>
+      <span class="badge bg-purple-subtle text-purple fw-bold px-3 py-1 rounded-pill" id="leadCountBadge">Pipeline</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle" id="leadTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Lead Code</th>
+            <th>Customer Name</th>
+            <th>Mobile No.</th>
+            <th>Source</th>
+            <th>Pipeline Status</th>
+            <th>Assigned To</th>
+            <th>Created Date</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Footer -->
+    <div class="pagination-container">
+      <small class="text-muted fw-semibold" id="tableCountText">Showing entries</small>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<!-- Modal: Add New Lead -->
+<div class="modal fade" id="addNewLeadModal" tabindex="-1" aria-labelledby="addNewLeadModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0 rounded-4">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold text-dark" id="addNewLeadModalLabel">
+          <i class="bi bi-person-plus text-purple me-2"></i>Add New Lead
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="newLeadForm">
+        <div class="modal-body pt-3">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Customer Full Name *</label>
+            <input type="text" id="leadCustomer" class="form-control" placeholder="e.g. Suresh Nair" required>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Mobile Number *</label>
+              <input type="tel" id="leadMobile" class="form-control" placeholder="10-digit mobile" required pattern="[0-9]{10}">
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Source *</label>
+              <select id="leadSource" class="form-select" required>
+                <option value="Website" selected>Website</option>
+                <option value="Walk In">Walk In</option>
+                <option value="Referral">Referral</option>
+                <option value="Just Dial">Just Dial</option>
+                <option value="Facebook">Facebook</option>
+                <option value="99acres">99acres</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Initial Status *</label>
+              <select id="leadStatus" class="form-select" required>
+                <option value="New" selected>New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Follow Up">Follow Up</option>
+                <option value="Converted">Converted</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Assign To *</label>
+              <select id="leadAssignee" class="form-select" required>
+                <option value="Anjali Sharma" selected>Anjali Sharma</option>
+                <option value="Vikas Patil">Vikas Patil</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-purple px-4 shadow">Add to Pipeline</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+let activeFilter = { status: "All", source: "All", assignee: "All" };
+
+function renderLeads() {
+  if (!window.CRMStore) return;
+  const list = CRMStore.getLeads();
+  const tbody = document.querySelector("#leadTable tbody");
+  if (!tbody) return;
+
+  const filtered = list.filter(item => {
+    if (activeFilter.status !== "All" && item.status !== activeFilter.status) return false;
+    if (activeFilter.source !== "All" && item.source !== activeFilter.source) return false;
+    if (activeFilter.assignee !== "All" && item.assignedTo !== activeFilter.assignee) return false;
+    return true;
+  });
+
+  tbody.innerHTML = "";
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No leads matching your criteria</td></tr>`;
+  } else {
+    filtered.forEach((ld, idx) => {
+      let badgeCls = "badge-new";
+      if (ld.status === "Contacted") badgeCls = "badge-pending";
+      if (ld.status === "In Progress") badgeCls = "badge-inprogress";
+      if (ld.status === "Follow Up") badgeCls = "badge-followup";
+      if (ld.status === "Converted") badgeCls = "badge-converted";
+
+      tbody.innerHTML += `
+        <tr>
+          <td>${idx + 1}</td>
+          <td><span class="fw-bold text-dark">${ld.code}</span></td>
+          <td><div class="fw-semibold">${ld.customer}</div></td>
+          <td><i class="bi bi-telephone text-muted me-1"></i>${ld.mobile}</td>
+          <td><span class="badge bg-light text-dark border">${ld.source}</span></td>
+          <td><span class="badge-status ${badgeCls}">${ld.status}</span></td>
+          <td>
+            <div class="d-flex align-items-center gap-1">
+              <i class="bi bi-person-circle text-primary"></i>
+              <span>${ld.assignedTo || "Unassigned"}</span>
+            </div>
+          </td>
+          <td>${ld.createdDate || "Today"}</td>
+          <td class="text-end pe-3">
+            <div class="action-btns">
+              <button class="btn-action btn-view" title="View Lead" onclick="alert('Lead Profile:\\nCode: ${ld.code}\\nCustomer: ${ld.customer}\\nMobile: ${ld.mobile}\\nStatus: ${ld.status}\\nAssigned: ${ld.assignedTo}')"><i class="bi bi-eye"></i></button>
+              <button class="btn-action btn-edit" title="Advance Stage" onclick="advanceLeadStage(${ld.id}, '${ld.status}')">
+                <i class="bi bi-arrow-right-circle text-purple"></i>
+              </button>
+              <button class="btn-action btn-delete" title="Delete" onclick="deleteLeadRow(${ld.id})"><i class="bi bi-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  const badge = document.getElementById("leadCountBadge");
+  if (badge) badge.textContent = `${list.length} Total Leads`;
+
+  const countText = document.getElementById("tableCountText");
+  if (countText) countText.textContent = `Showing ${filtered.length} of ${list.length} leads`;
+}
+
+function advanceLeadStage(id, currentStatus) {
+  const stages = ["New", "Contacted", "In Progress", "Follow Up", "Converted"];
+  const currentIdx = stages.indexOf(currentStatus);
+  const nextStage = stages[(currentIdx + 1) % stages.length];
+  CRMStore.updateLeadStatus(id, nextStage);
+  showToast(`Lead advanced to: ${nextStage}`);
+  renderLeads();
+}
+
+function deleteLeadRow(id) {
+  if (confirm("Are you sure you want to remove this lead?")) {
+    CRMStore.deleteLead(id);
+    showToast("Lead record deleted", "danger");
+    renderLeads();
+  }
+}
+
+function applyLeadFilter() {
+  activeFilter.status = document.getElementById("filterStatus").value;
+  activeFilter.source = document.getElementById("filterSource").value;
+  activeFilter.assignee = document.getElementById("filterAssignee").value;
+  renderLeads();
+  showToast("Filter applied to leads");
+}
+
+function resetLeadFilter() {
+  document.getElementById("leadFilterForm").reset();
+  activeFilter = { status: "All", source: "All", assignee: "All" };
+  renderLeads();
+  showToast("Filters reset");
+}
+
+document.getElementById("newLeadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const lead = {
+    customer: document.getElementById("leadCustomer").value.trim(),
+    mobile: document.getElementById("leadMobile").value.trim(),
+    source: document.getElementById("leadSource").value,
+    status: document.getElementById("leadStatus").value,
+    assignedTo: document.getElementById("leadAssignee").value
+  };
+
+  CRMStore.addLead(lead);
+  showToast(`Lead added for ${lead.customer}!`);
+
+  const modalEl = document.getElementById("addNewLeadModal");
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) modalInstance.hide();
+  this.reset();
+
+  renderLeads();
+});
+
+document.addEventListener("DOMContentLoaded", renderLeads);
+window.addEventListener("crm_data_updated", renderLeads);
+</script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Employee Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar (Employee Purple Theme) -->
+<nav class="sidebar theme-employee">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#c084fc;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <span class="nav-section-title">Navigation</span>
+    <a class="nav-link active" href="employee-dashboard.html">
+      <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+    </a>
+
+    <span class="nav-section-title">CRM Entries</span>
+    <a class="nav-link" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span> <span class="nav-badge">128</span></a>
+    <a class="nav-link" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span> <span class="nav-badge">86</span></a>
+    <a class="nav-link" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span> <span class="nav-badge">56</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+
+    <span class="nav-section-title">Account</span>
+    <a class="nav-link" href="#"><i class="bi bi-person-badge"></i> <span>Profile</span></a>
+    <a class="nav-link" href="#"><i class="bi bi-shield-lock"></i> <span>Change Password</span></a>
+
+    <!-- Live Sync Engine Badge -->
+    <div class="mt-4 px-2">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:0.7rem 0.85rem;">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <span class="text-white-50" style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Agent Status</span>
+          <span class="badge bg-success-subtle text-success" style="font-size:0.65rem;padding:2px 6px;">Active</span>
+        </div>
+        <div class="text-white small fw-bold d-flex align-items-center gap-2">
+          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;"></span>
+          <span style="font-size:0.78rem;">CRMStore Synced</span>
+        </div>
+      </div>
+    </div>
+
+    <a class="nav-link logout-link mt-3" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Welcome back, Employee User! 🌟</h1>
+      <div class="topbar-breadcrumb">
+        <span>Employee Portal &middot; Skyline Real Estate CRM</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="pill-widget live-date">
+        <i class="bi bi-calendar3"></i> 07 August 2026 &middot; Thursday
+      </div>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-purple-light);color:var(--crm-purple);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Sales Executive</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5 KPI Stat Cards (Matching PDF 2 Page 2) -->
+  <section class="row g-3 mb-4">
+    <!-- All Enquiries -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-blue">
+        <div class="icon-circle" style="background:#eff6ff;color:#2563eb;">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <div class="value" id="empStatEnquiries">128</div>
+        <div class="label">All Enquiries</div>
+        <div class="stat-trend trend-info"><i class="bi bi-graph-up-arrow"></i> +8.5% this week</div>
+        <a href="enquiry.html" class="card-footer-link" style="color:#2563eb;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Follow Ups -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-green">
+        <div class="icon-circle" style="background:#ecfdf5;color:#10b981;">
+          <i class="bi bi-telephone-fill"></i>
+        </div>
+        <div class="value" id="empStatFollowups">86</div>
+        <div class="label">Follow Ups</div>
+        <div class="stat-trend trend-up"><i class="bi bi-clock-history"></i> 12 Due Today</div>
+        <a href="followup.html" class="card-footer-link" style="color:#10b981;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Leads -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-purple">
+        <div class="icon-circle" style="background:#f5f3ff;color:#8b5cf6;">
+          <i class="bi bi-bullseye"></i>
+        </div>
+        <div class="value" id="empStatLeads">56</div>
+        <div class="label">Qualified Leads</div>
+        <div class="stat-trend trend-purple"><i class="bi bi-fire"></i> 18 Ready to Close</div>
+        <a href="lead.html" class="card-footer-link" style="color:#8b5cf6;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Day Book -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-orange">
+        <div class="icon-circle" style="background:#fff7ed;color:#f97316;">
+          <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
+        <div class="value" id="empStatDaybook">₹2,73,630</div>
+        <div class="label">Day Book Total</div>
+        <div class="stat-trend trend-orange"><i class="bi bi-check-circle"></i> Synced Live</div>
+        <a href="daybook.html" class="card-footer-link" style="color:#ea580c;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Petty Cash -->
+    <div class="col-12 col-sm-6 col-xl">
+      <div class="stat-card card-teal">
+        <div class="icon-circle" style="background:#ecfeff;color:#0891b2;">
+          <i class="bi bi-cash-coin"></i>
+        </div>
+        <div class="value" id="empStatPettyCash">₹1,155</div>
+        <div class="label">Petty Cash Vouchers</div>
+        <div class="stat-trend trend-teal"><i class="bi bi-shield-check"></i> Verified</div>
+        <a href="pettycash.html" class="card-footer-link" style="color:#0891b2;">
+          View Details &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sales Activity & Conversion Analytics Row -->
+  <section class="row g-4 mb-4">
+    <!-- Left: Weekly Follow-up Activity -->
+    <div class="col-12 col-xl-8">
+      <div class="card-panel h-100 mb-0">
+        <div class="card-panel-header">
+          <div>
+            <h2 class="card-panel-title">
+              <i class="bi bi-activity text-purple"></i> Weekly Follow-Up & Client Engagement
+            </h2>
+            <small class="text-muted">Total customer calls, site visits, and scheduled demos</small>
+          </div>
+          <span class="badge bg-purple-subtle text-purple fw-bold px-3 py-1 rounded-pill">
+            <i class="bi bi-lightning-charge me-1"></i>High Engagement
+          </span>
+        </div>
+        <div style="height: 270px; position: relative;">
+          <canvas id="empActivityChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Lead Conversion Funnel -->
+    <div class="col-12 col-xl-4">
+      <div class="card-panel h-100 mb-0">
+        <div class="card-panel-header">
+          <div>
+            <h2 class="card-panel-title">
+              <i class="bi bi-funnel-fill text-primary"></i> Lead Pipeline Status
+            </h2>
+            <small class="text-muted">Active stages</small>
+          </div>
+        </div>
+        <div style="height: 200px; position: relative;">
+          <canvas id="empPipelineChart"></canvas>
+        </div>
+        <div class="d-flex justify-content-around text-center pt-3 border-top mt-2">
+          <div>
+            <div class="fw-bold text-primary small">New</div>
+            <span class="small text-muted fw-semibold">35%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-info small">Contacted</div>
+            <span class="small text-muted fw-semibold">25%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-warning small">In Progress</div>
+            <span class="small text-muted fw-semibold">22%</span>
+          </div>
+          <div>
+            <div class="fw-bold text-success small">Converted</div>
+            <span class="small text-muted fw-semibold">18%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgent Action Feed for Sales Executives -->
+  <section class="card-panel mb-4">
+    <div class="card-panel-header">
+      <div>
+        <h2 class="card-panel-title">
+          <i class="bi bi-calendar-check-fill text-purple"></i> Today's Follow-Up &amp; Site Visit Schedule
+        </h2>
+        <small class="text-muted">High priority scheduled touchpoints requiring immediate client communication</small>
+      </div>
+      <a href="followup.html" class="btn btn-purple btn-sm">
+        <i class="bi bi-plus-circle me-1"></i> Log New Follow-Up
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Contact Phone</th>
+            <th>Target Project</th>
+            <th>Scheduled Time</th>
+            <th>Next Step</th>
+            <th>Urgency</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-purple">RM</div>
+                <div>
+                  <div class="fw-bold text-dark">Rahul Mehta</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Skyline Heights &bull; 2 BHK</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9876543210</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-primary">Today &bull; 02:30 PM</span></td>
+            <td>Price quotation and payment schedule discussion</td>
+            <td><span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 rounded-pill"><i class="bi bi-fire me-1"></i>Urgent</span></td>
+            <td class="text-end pe-3">
+              <a href="followup.html" class="btn btn-outline-primary btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-telephone-outbound me-1"></i> Call Now
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-blue">NS</div>
+                <div>
+                  <div class="fw-bold text-dark">Neha Sharma</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Skyline Heights &bull; 3 BHK</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9123456780</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-primary">Today &bull; 04:00 PM</span></td>
+            <td>Sample flat walkthrough with family</td>
+            <td><span class="badge bg-warning-subtle text-warning fw-bold px-2 py-1 rounded-pill"><i class="bi bi-clock me-1"></i>Scheduled</span></td>
+            <td class="text-end pe-3">
+              <a href="followup.html" class="btn btn-outline-primary btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-geo-alt me-1"></i> Site Visit
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="client-avatar avatar-emerald">AK</div>
+                <div>
+                  <div class="fw-bold text-dark">Amit Kulkarni</div>
+                  <small class="text-muted" style="font-size:0.75rem;">Skyline Heights &bull; Unit A-402</small>
+                </div>
+              </div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9822012345</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-success">Tomorrow &bull; 11:00 AM</span></td>
+            <td>Token advance collection &amp; allotment letter signing</td>
+            <td><span class="badge bg-success-subtle text-success fw-bold px-2 py-1 rounded-pill"><i class="bi bi-check2-all me-1"></i>Closing</span></td>
+            <td class="text-end pe-3">
+              <a href="flat-sale.html" class="btn btn-success btn-sm py-1 px-2" style="font-size:0.78rem;">
+                <i class="bi bi-building-check me-1"></i> Book Unit
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Quick Actions Grid (Matching PDF 2 Page 2) -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-lightning-charge-fill text-warning"></i> Quick Operations
+      </h2>
+      <span class="text-muted small">Daily CRM Data Entry Tasks</span>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="enquiry.html">
+          <span class="qa-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-card-list"></i></span>
+          <span>All Enquiry</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="followup.html">
+          <span class="qa-icon" style="background:#ecfdf5;color:#10b981;"><i class="bi bi-telephone-fill"></i></span>
+          <span>Follow Up</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="lead.html">
+          <span class="qa-icon" style="background:#f5f3ff;color:#8b5cf6;"><i class="bi bi-people-fill"></i></span>
+          <span>Lead</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="daybook.html">
+          <span class="qa-icon" style="background:#fff7ed;color:#ea580c;"><i class="bi bi-journal-text"></i></span>
+          <span>Day Book</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="pettycash.html">
+          <span class="qa-icon" style="background:#ecfeff;color:#0891b2;"><i class="bi bi-cash-coin"></i></span>
+          <span>Petty Cash Entry</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="vendor-payment.html">
+          <span class="qa-icon" style="background:#fee2e2;color:#ef4444;"><i class="bi bi-truck"></i></span>
+          <span>Vendor Payment Entry</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="employee-payment.html">
+          <span class="qa-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-person-badge-fill"></i></span>
+          <span>Employee Payment Entry</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <a class="quick-action" href="flat-sale.html">
+          <span class="qa-icon" style="background:#fdf2f8;color:#db2777;"><i class="bi bi-building-check"></i></span>
+          <span>Flat Sale Entry</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function initEmployeeCharts() {
+  const ctxActivity = document.getElementById('empActivityChart');
+  if (ctxActivity) {
+    const ctx = ctxActivity.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+    gradient.addColorStop(0, 'rgba(124, 58, 237, 0.35)');
+    gradient.addColorStop(1, 'rgba(124, 58, 237, 0.0)');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [
+          {
+            label: 'Client Interactions',
+            data: [14, 22, 19, 28, 35, 42, 26],
+            borderColor: '#7c3aed',
+            borderWidth: 3,
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: '#7c3aed',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 7
+          },
+          {
+            label: 'Site Visits',
+            data: [3, 6, 5, 8, 12, 16, 9],
+            borderColor: '#ec4899',
+            borderWidth: 2.5,
+            borderDash: [4, 4],
+            tension: 0.35,
+            fill: false,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { font: { family: 'Plus Jakarta Sans', weight: '600' } }
+          }
+        },
+        scales: {
+          y: { grid: { color: 'rgba(226, 232, 240, 0.6)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  const ctxPipeline = document.getElementById('empPipelineChart');
+  if (ctxPipeline) {
+    new Chart(ctxPipeline, {
+      type: 'doughnut',
+      data: {
+        labels: ['New', 'Contacted', 'In Progress', 'Converted'],
+        datasets: [{
+          data: [35, 25, 22, 18],
+          backgroundColor: ['#7c3aed', '#06b6d4', '#f59e0b', '#10b981'],
+          borderWidth: 0,
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        cutout: '72%'
+      }
+    });
+  }
+}
+
+function refreshEmployeeDashboard() {
+  if (!window.CRMStore) return;
+  const enqs = CRMStore.getEnquiries();
+  const followups = CRMStore.getFollowups();
+  const leads = CRMStore.getLeads();
+  const daybook = CRMStore.getDaybook();
+  const petty = CRMStore.getPettyCash();
+  const summary = CRMStore.getFinancialSummary();
+
+  const elEnq = document.getElementById("empStatEnquiries");
+  if (elEnq) elEnq.textContent = enqs.length;
+
+  const elFoll = document.getElementById("empStatFollowups");
+  if (elFoll) elFoll.textContent = followups.length;
+
+  const elLead = document.getElementById("empStatLeads");
+  if (elLead) elLead.textContent = leads.length;
+
+  const elDay = document.getElementById("empStatDaybook");
+  if (elDay) {
+    const net = daybook.length > 0 ? daybook[0].balance : summary.netBalance;
+    elDay.textContent = "₹" + Number(net).toLocaleString('en-IN');
+  }
+
+  const elPetty = document.getElementById("empStatPettyCash");
+  if (elPetty) {
+    let pSum = 0;
+    petty.forEach(p => pSum += Number(p.amount) || 0);
+    elPetty.textContent = "₹" + Number(pSum).toLocaleString('en-IN');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  refreshEmployeeDashboard();
+  initEmployeeCharts();
+});
+window.addEventListener("crm_data_updated", refreshEmployeeDashboard);
+</script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Petty Cash Entry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar (Green Emerald Theme) -->
+<nav class="sidebar theme-green">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#6ee7b7;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-link" href="employee-dashboard.html"><i class="bi bi-grid-fill"></i> <span>Dashboard</span></a>
+    <a class="nav-link" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link active" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Petty Cash Management</h1>
+      <div class="topbar-breadcrumb">
+        <a href="employee-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Daily Office Cash Expenses</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" class="form-control" placeholder="Search vouchers...">
+      </div>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-emerald-light);color:var(--crm-emerald);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Employee</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Split 2-Column Layout (Matching PDF 2 Page 4) -->
+  <div class="row g-4">
+    <!-- Left Column: Add Entry Form -->
+    <div class="col-12 col-xl-4">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <h2 class="card-panel-title">
+            <i class="bi bi-receipt text-success"></i> Add Petty Cash Entry
+          </h2>
+        </div>
+
+        <form id="pettyCashForm" onsubmit="event.preventDefault(); alert('Petty cash voucher saved successfully!');">
+          <div class="row g-2">
+            <div class="col-6 mb-2">
+              <label class="form-label">Date *</label>
+              <input type="date" class="form-control" required>
+            </div>
+
+            <div class="col-6 mb-2">
+              <label class="form-label">Voucher No. *</label>
+              <input type="text" class="form-control bg-light" value="PC-07082026-006" readonly>
+            </div>
+
+            <div class="col-12 mb-2">
+              <label class="form-label">Particulars *</label>
+              <input type="text" class="form-control" placeholder="e.g. Office Coffee & Milk" required>
+            </div>
+
+            <div class="col-6 mb-2">
+              <label class="form-label">Category *</label>
+              <select class="form-select" required>
+                <option value="">Select Category</option>
+                <option selected>Office Expense</option>
+                <option>Traveling Expense</option>
+                <option>Printing & Stationery</option>
+              </select>
+            </div>
+
+            <div class="col-6 mb-2">
+              <label class="form-label">Payment Mode *</label>
+              <select class="form-select" required>
+                <option value="">Select Mode</option>
+                <option selected>Cash</option>
+                <option>UPI</option>
+              </select>
+            </div>
+
+            <div class="col-6 mb-2">
+              <label class="form-label">Amount (₹) *</label>
+              <input type="number" class="form-control" placeholder="0.00" required>
+            </div>
+
+            <div class="col-6 mb-2">
+              <label class="form-label">Remarks</label>
+              <input type="text" class="form-control" placeholder="Optional notes">
+            </div>
+
+            <div class="col-12 d-flex gap-2 mt-3">
+              <button type="submit" class="btn btn-success flex-fill shadow">
+                <i class="bi bi-save me-1"></i> Save Entry
+              </button>
+              <button type="reset" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column: Petty Cash List Table -->
+    <div class="col-12 col-xl-8">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <h2 class="card-panel-title">
+            <i class="bi bi-cash-stack text-success"></i> Petty Cash Entry List
+          </h2>
+          <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill">Total: ₹955.00</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Voucher No.</th>
+                <th>Particulars</th>
+                <th>Category</th>
+                <th>Mode</th>
+                <th class="text-end">Amount (₹)</th>
+                <th class="text-end pe-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>07/08/2026</td>
+                <td><span class="fw-bold text-dark">PC-07082026-001</span></td>
+                <td><div class="fw-semibold">Tea & Snacks</div></td>
+                <td><span class="badge bg-light text-dark border">Office Expense</span></td>
+                <td><span class="badge-status badge-new">Cash</span></td>
+                <td class="text-end fw-bold text-dark">350.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>07/08/2026</td>
+                <td><span class="fw-bold text-dark">PC-07082026-002</span></td>
+                <td><div class="fw-semibold">Auto Fare</div></td>
+                <td><span class="badge bg-light text-dark border">Traveling Expense</span></td>
+                <td><span class="badge-status badge-new">Cash</span></td>
+                <td class="text-end fw-bold text-dark">180.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>07/08/2026</td>
+                <td><span class="fw-bold text-dark">PC-07082026-003</span></td>
+                <td><div class="fw-semibold">Stationery Items</div></td>
+                <td><span class="badge bg-light text-dark border">Office Expense</span></td>
+                <td><span class="badge-status badge-new">Cash</span></td>
+                <td class="text-end fw-bold text-dark">245.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>07/08/2026</td>
+                <td><span class="fw-bold text-dark">PC-07082026-004</span></td>
+                <td><div class="fw-semibold">Printing Charges</div></td>
+                <td><span class="badge bg-light text-dark border">Printing & Stationery</span></td>
+                <td><span class="badge-status badge-new">Cash</span></td>
+                <td class="text-end fw-bold text-dark">120.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>07/08/2026</td>
+                <td><span class="fw-bold text-dark">PC-07082026-005</span></td>
+                <td><div class="fw-semibold">Courier Charges</div></td>
+                <td><span class="badge bg-light text-dark border">Office Expense</span></td>
+                <td><span class="badge-status badge-new">Cash</span></td>
+                <td class="text-end fw-bold text-dark">60.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Footer -->
+        <div class="pagination-container">
+          <small class="text-muted fw-semibold">Showing 1 to 5 of 18 entries</small>
+          <nav>
+            <ul class="pagination">
+              <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function renderPettyCashTable() {
+  const items = CRMStore.getPettyCash();
+  const tbody = document.querySelector("table tbody");
+  const countBadge = document.querySelector(".pagination-container small");
+  if (countBadge) countBadge.textContent = `Showing 1 to ${items.length} of ${items.length} entries`;
+
+  let totalSum = 0;
+  items.forEach(it => totalSum += Number(it.amount) || 0);
+  const totalBadge = document.querySelector(".card-panel-header .badge");
+  if (totalBadge) totalBadge.textContent = `Total: ₹${totalSum.toLocaleString('en-IN')}.00`;
+
+  if (!tbody) return;
+  tbody.innerHTML = "";
+
+  if (items.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">No petty cash vouchers recorded yet</td></tr>`;
+    return;
+  }
+
+  items.forEach((p, i) => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${p.date}</td>
+        <td><span class="fw-bold text-dark">${p.voucherNo}</span></td>
+        <td><div class="fw-semibold">${p.particulars}</div></td>
+        <td><span class="badge bg-light text-dark border">${p.category}</span></td>
+        <td><span class="badge-status badge-new">${p.mode || "Cash"}</span></td>
+        <td class="text-end fw-bold text-dark">${Number(p.amount).toLocaleString('en-IN')}.00</td>
+        <td class="text-end pe-3">
+          <div class="action-btns">
+            <button class="btn-action btn-view" title="Print Voucher" onclick="alert('Petty Cash Voucher:\\nNo: ${p.voucherNo}\\nAmount: ₹${p.amount}\\nParticulars: ${p.particulars}\\nCategory: ${p.category}')"><i class="bi bi-eye"></i></button>
+            <button class="btn-action btn-delete" title="Delete" onclick="deletePettyCashRow('${p.id}')"><i class="bi bi-trash"></i></button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  // Next voucher number
+  const vInput = document.querySelector("input[value*='PC-']");
+  if (vInput) {
+    const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const nextNum = (items.length + 1).toString().padStart(3, "0");
+    vInput.value = `PC-${todayStr}-${nextNum}`;
+  }
+}
+
+function deletePettyCashRow(id) {
+  if (confirm("Are you sure you want to delete this petty cash voucher?")) {
+    CRMStore.deletePettyCash(id);
+    showToast("Petty cash voucher deleted", "danger");
+    renderPettyCashTable();
+  }
+}
+
+document.getElementById("pettyCashForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const form = this;
+  const newPC = {
+    date: form.querySelector("input[type='date']").value,
+    particulars: form.querySelectorAll("input[type='text']")[1].value.trim(),
+    category: form.querySelectorAll("select")[0].value,
+    mode: form.querySelectorAll("select")[1].value,
+    amount: form.querySelector("input[type='number']").value,
+    remarks: form.querySelectorAll("input[type='text']")[2].value.trim()
+  };
+
+  CRMStore.addPettyCashEntry(newPC);
+  showToast(`Voucher saved: ₹${newPC.amount} (synced with Day Book)`);
+  form.reset();
+  renderPettyCashTable();
+});
+
+document.addEventListener("DOMContentLoaded", renderPettyCashTable);
+</script>
+</body>
+</html>

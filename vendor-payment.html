@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Vendor Payment Entry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar -->
+<nav class="sidebar theme-employee">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#c084fc;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-link" href="employee-dashboard.html"><i class="bi bi-grid-fill"></i> <span>Dashboard</span></a>
+    <a class="nav-link" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link active" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Vendor Payment Entry</h1>
+      <div class="topbar-breadcrumb">
+        <a href="employee-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Supplier Settlements</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="pill-widget live-date">
+        <i class="bi bi-calendar3"></i> 07 August 2026 &middot; Thursday
+      </div>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-purple-light);color:var(--crm-purple);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Employee</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Split 2-Column Layout -->
+  <div class="row g-4">
+    <!-- Left Column: Form (Matching PDF 2 Page 5) -->
+    <div class="col-12 col-xl-5">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <h2 class="card-panel-title" style="color:#0891b2;">
+            <i class="bi bi-truck text-info"></i> Vendor Payment Entry
+          </h2>
+        </div>
+
+        <form id="vendorPayForm" onsubmit="event.preventDefault(); alert('Vendor payment voucher recorded successfully!');">
+          <div class="mb-3">
+            <label class="form-label">Date *</label>
+            <input type="date" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Vendor Company Name *</label>
+            <select class="form-select" required>
+              <option value="">Select Vendor</option>
+              <option selected>UltraTech Cement Ltd</option>
+              <option>Tata Steel Suppliers</option>
+              <option>Asian Paints Depot</option>
+              <option>Kajaria Ceramics</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Amount (₹) *</label>
+            <input type="number" class="form-control" placeholder="Enter amount" value="75000" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Payment Mode *</label>
+            <select class="form-select" required>
+              <option value="">Select Mode</option>
+              <option selected>Bank Transfer</option>
+              <option>Cheque</option>
+              <option>Cash</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Remarks</label>
+            <textarea class="form-control" rows="2" placeholder="Optional invoice # or bill reference"></textarea>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-teal flex-fill shadow">
+              <i class="bi bi-save me-1"></i> Save Payment
+            </button>
+            <button type="reset" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-counterclockwise"></i> Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column: Recent Vendor Payments Table -->
+    <div class="col-12 col-xl-7">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <h2 class="card-panel-title">
+            <i class="bi bi-receipt text-primary"></i> Recent Vendor Settlements
+          </h2>
+          <span class="badge bg-info-subtle text-info fw-bold px-3 py-1 rounded-pill">Total: ₹1,50,000</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Vendor</th>
+                <th>Mode</th>
+                <th class="text-end">Amount (₹)</th>
+                <th class="text-end pe-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>07/08/2026</td>
+                <td>
+                  <div class="fw-semibold">UltraTech Cement Ltd</div>
+                  <small class="text-muted">Invoice #UTC-4091</small>
+                </td>
+                <td><span class="badge-status badge-active">Bank Transfer</span></td>
+                <td class="text-end fw-bold text-dark">85,000.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>05/08/2026</td>
+                <td>
+                  <div class="fw-semibold">Tata Steel Suppliers</div>
+                  <small class="text-muted">Invoice #TS-8812</small>
+                </td>
+                <td><span class="badge-status badge-active">Cheque</span></td>
+                <td class="text-end fw-bold text-dark">45,000.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>03/08/2026</td>
+                <td>
+                  <div class="fw-semibold">Asian Paints Depot</div>
+                  <small class="text-muted">Batch 14 Paint Supply</small>
+                </td>
+                <td><span class="badge-status badge-active">Bank Transfer</span></td>
+                <td class="text-end fw-bold text-dark">20,000.00</td>
+                <td class="text-end pe-3">
+                  <div class="action-btns">
+                    <button class="btn-action btn-view" title="View"><i class="bi bi-eye"></i></button>
+                    <button class="btn-action btn-edit" title="Edit"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function renderVendorPayments() {
+  if (!window.CRMStore) return;
+  const allPay = CRMStore.getPayments();
+  const vendorPay = allPay.filter(p => !p.category || !p.category.includes("Employee"));
+  const tbody = document.querySelector("table tbody");
+  if (!tbody) return;
+
+  tbody.innerHTML = "";
+
+  let totalSettled = 0;
+  if (vendorPay.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">No vendor settlements recorded yet</td></tr>`;
+  } else {
+    vendorPay.forEach((p, idx) => {
+      totalSettled += Number(p.amount) || 0;
+      tbody.innerHTML += `
+        <tr>
+          <td>${idx + 1}</td>
+          <td>${p.date}</td>
+          <td>
+            <div class="fw-semibold text-dark">${p.recipient}</div>
+            <small class="text-muted">${p.remarks || p.category}</small>
+          </td>
+          <td><span class="badge-status badge-active">${p.mode}</span></td>
+          <td class="text-end fw-bold text-dark">₹${Number(p.amount).toLocaleString('en-IN')}.00</td>
+          <td class="text-end pe-3">
+            <div class="action-btns">
+              <button class="btn-action btn-view" title="Receipt" onclick="alert('Vendor Payment Receipt:\\nVendor: ${p.recipient}\\nDate: ${p.date}\\nAmount: ₹${Number(p.amount).toLocaleString('en-IN')}\\nMode: ${p.mode}\\nRemarks: ${p.remarks || "None"}')"><i class="bi bi-eye"></i></button>
+              <button class="btn-action btn-delete" title="Delete" onclick="deleteVendorPayment(${p.id})"><i class="bi bi-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  const badge = document.querySelector(".card-panel-header .badge");
+  if (badge) badge.textContent = `Total: ₹${totalSettled.toLocaleString('en-IN')}.00`;
+}
+
+function deleteVendorPayment(id) {
+  if (confirm("Are you sure you want to delete this vendor payment record?")) {
+    const raw = CRMStore.getRawData();
+    raw.payments = raw.payments.filter(p => p.id != id);
+    CRMStore.saveRawData(raw);
+    showToast("Vendor payment record deleted", "danger");
+    renderVendorPayments();
+  }
+}
+
+document.getElementById("vendorPayForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const p = {
+    date: this.querySelector("input[type='date']").value,
+    recipient: this.querySelector("select").value,
+    category: "Vendor Settlement",
+    mode: this.querySelectorAll("select")[1].value,
+    amount: Number(this.querySelector("input[type='number']").value),
+    remarks: this.querySelector("textarea").value.trim()
+  };
+
+  CRMStore.addPayment(p);
+  showToast(`Settled ₹${p.amount.toLocaleString('en-IN')} with ${p.recipient}! (Synced with Day Book)`);
+  this.reset();
+  this.querySelector("input[type='date']").value = new Date().toISOString().split("T")[0];
+  renderVendorPayments();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dInput = document.querySelector("input[type='date']");
+  if (dInput) dInput.value = new Date().toISOString().split("T")[0];
+  renderVendorPayments();
+});
+window.addEventListener("crm_data_updated", renderVendorPayments);
+</script>
+</body>
+</html>

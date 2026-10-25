@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Flat Enquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar -->
+<nav class="sidebar theme-employee">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#c084fc;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-link" href="employee-dashboard.html"><i class="bi bi-grid-fill"></i> <span>Dashboard</span></a>
+    <a class="nav-link active" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Flat Enquiry Entry</h1>
+      <div class="topbar-breadcrumb">
+        <a href="employee-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <a href="enquiry.html">All Enquiry</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Add Enquiry</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" class="form-control" placeholder="Search enquiries...">
+      </div>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-purple-light);color:var(--crm-purple);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Employee</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Add Enquiry Form Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-file-earmark-plus-fill text-primary"></i> Flat Enquiry Details
+      </h2>
+      <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1 rounded-pill">New Registration</span>
+    </div>
+
+    <form class="row g-3" id="enquiryForm" onsubmit="event.preventDefault(); alert('Enquiry saved successfully!');">
+      <div class="col-12 col-md-3">
+        <label class="form-label">Enquiry Date *</label>
+        <input type="date" class="form-control" required>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Enquiry No.</label>
+        <input type="text" class="form-control bg-light" value="ENQ-07082026-006" readonly>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Project / Building *</label>
+        <select class="form-select" required>
+          <option value="">Select Project</option>
+          <option selected>Skyline Heights</option>
+          <option>Green Valley</option>
+          <option>Sunrise Residency</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Flat Type *</label>
+        <select class="form-select" required>
+          <option value="">Select Flat Type</option>
+          <option>1 BHK</option>
+          <option selected>2 BHK</option>
+          <option>3 BHK</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Customer Name *</label>
+        <input type="text" class="form-control" placeholder="Enter customer name" required>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Mobile *</label>
+        <input type="tel" class="form-control" placeholder="Enter mobile number" required>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Budget (₹)</label>
+        <input type="text" class="form-control" placeholder="e.g. 45,00,000">
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Source</label>
+        <select class="form-select">
+          <option value="">Select Source</option>
+          <option selected>Website</option>
+          <option>Walk In</option>
+          <option>Referral</option>
+          <option>Facebook</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Preferred Location</label>
+        <select class="form-select">
+          <option value="">Select Location</option>
+          <option selected>City Center</option>
+          <option>North Wing</option>
+          <option>Highway Touch</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">No. of Bedrooms</label>
+        <select class="form-select">
+          <option value="">Select Bedrooms</option>
+          <option>1</option>
+          <option selected>2</option>
+          <option>3</option>
+          <option>4+</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Purpose</label>
+        <select class="form-select">
+          <option value="">Select Purpose</option>
+          <option selected>Self Use</option>
+          <option>Investment</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label">Enquiry Type</label>
+        <select class="form-select">
+          <option value="">Select Type</option>
+          <option selected>Hot Lead</option>
+          <option>Warm Lead</option>
+          <option>Cold Lead</option>
+        </select>
+      </div>
+
+      <div class="col-12 pt-2">
+        <button type="submit" class="btn btn-purple px-4 shadow">
+          <i class="bi bi-save me-1"></i> Save Enquiry
+        </button>
+        <button type="reset" class="btn btn-outline-secondary px-4 ms-2">
+          <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Enquiry List Table Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-table text-primary"></i> Enquiry List
+      </h2>
+      <span class="text-muted small">Showing recent prospective customer enquiries</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Enquiry ID</th>
+            <th>Customer</th>
+            <th>Mobile</th>
+            <th>Project</th>
+            <th>Budget (₹)</th>
+            <th>Source</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><span class="fw-bold text-dark">ENQ-07082026-001</span></td>
+            <td>
+              <div class="fw-semibold">Rahul Mehta</div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9876543210</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-success">₹45,00,000</span></td>
+            <td><span class="badge-status badge-new">Website</span></td>
+            <td class="text-end pe-3">
+              <div class="action-btns">
+                <button class="btn-action btn-view" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn-action btn-edit" title="Edit Enquiry"><i class="bi bi-pencil"></i></button>
+                <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><span class="fw-bold text-dark">ENQ-07082026-002</span></td>
+            <td>
+              <div class="fw-semibold">Neha Sharma</div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9123456780</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-success">₹52,00,000</span></td>
+            <td><span class="badge-status badge-pending">Walk In</span></td>
+            <td class="text-end pe-3">
+              <div class="action-btns">
+                <button class="btn-action btn-view" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn-action btn-edit" title="Edit Enquiry"><i class="bi bi-pencil"></i></button>
+                <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><span class="fw-bold text-dark">ENQ-07082026-003</span></td>
+            <td>
+              <div class="fw-semibold">Amit Verma</div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9988776655</td>
+            <td><span class="badge bg-light text-dark border">Green Valley</span></td>
+            <td><span class="fw-bold text-success">₹38,50,000</span></td>
+            <td><span class="badge-status badge-completed">Referral</span></td>
+            <td class="text-end pe-3">
+              <div class="action-btns">
+                <button class="btn-action btn-view" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn-action btn-edit" title="Edit Enquiry"><i class="bi bi-pencil"></i></button>
+                <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><span class="fw-bold text-dark">ENQ-07082026-004</span></td>
+            <td>
+              <div class="fw-semibold">Pooja Singh</div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>9012345678</td>
+            <td><span class="badge bg-light text-dark border">Skyline Heights</span></td>
+            <td><span class="fw-bold text-success">₹48,00,000</span></td>
+            <td><span class="badge-status badge-inprogress">Just Dial</span></td>
+            <td class="text-end pe-3">
+              <div class="action-btns">
+                <button class="btn-action btn-view" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn-action btn-edit" title="Edit Enquiry"><i class="bi bi-pencil"></i></button>
+                <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><span class="fw-bold text-dark">ENQ-07082026-005</span></td>
+            <td>
+              <div class="fw-semibold">Karan Patel</div>
+            </td>
+            <td><i class="bi bi-telephone text-muted me-1"></i>8765432109</td>
+            <td><span class="badge bg-light text-dark border">Green Valley</span></td>
+            <td><span class="fw-bold text-success">₹35,00,000</span></td>
+            <td><span class="badge-status badge-new">Facebook</span></td>
+            <td class="text-end pe-3">
+              <div class="action-btns">
+                <button class="btn-action btn-view" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn-action btn-edit" title="Edit Enquiry"><i class="bi bi-pencil"></i></button>
+                <button class="btn-action btn-delete" title="Delete"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Footer -->
+    <div class="pagination-container">
+      <small class="text-muted fw-semibold">Showing 1 to 5 of 128 entries</small>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+function renderEnquiries() {
+  const enquiries = CRMStore.getEnquiries();
+  const tbody = document.querySelector("table tbody");
+  const countBadge = document.querySelector(".pagination-container small");
+  if (countBadge) countBadge.textContent = `Showing 1 to ${enquiries.length} of ${enquiries.length} entries`;
+  if (!tbody) return;
+  tbody.innerHTML = "";
+
+  if (enquiries.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">No prospective enquiries logged yet</td></tr>`;
+    return;
+  }
+
+  enquiries.forEach((e, i) => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${i + 1}</td>
+        <td><span class="fw-bold text-dark">${e.code}</span></td>
+        <td>
+          <div class="fw-semibold">${e.customer}</div>
+          <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>${e.location || "City Center"}</small>
+        </td>
+        <td><i class="bi bi-telephone text-muted me-1"></i>${e.mobile}</td>
+        <td><span class="badge bg-light text-dark border">${e.project}</span></td>
+        <td><span class="fw-bold text-success">₹${Number(e.budget).toLocaleString('en-IN')}</span></td>
+        <td><span class="badge-status badge-new">${e.source}</span></td>
+        <td class="text-end pe-3">
+          <div class="action-btns">
+            <button class="btn-action btn-view" title="View Details" onclick="alert('Enquiry Dossier:\\nID: ${e.code}\\nCustomer: ${e.customer}\\nProject: ${e.project}\\nBudget: ₹${Number(e.budget).toLocaleString('en-IN')}\\nPurpose: ${e.purpose}')"><i class="bi bi-eye"></i></button>
+            <button class="btn-action btn-delete" title="Delete" onclick="deleteEnquiryRow('${e.id}')"><i class="bi bi-trash"></i></button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  // Update next enquiry code
+  const codeInput = document.querySelector("input[value*='ENQ-']");
+  if (codeInput) {
+    const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const nextNum = (enquiries.length + 1).toString().padStart(3, "0");
+    codeInput.value = `ENQ-${todayStr}-${nextNum}`;
+  }
+}
+
+function deleteEnquiryRow(id) {
+  if (confirm("Are you sure you want to delete this enquiry record?")) {
+    CRMStore.deleteEnquiry(id);
+    showToast("Enquiry deleted successfully", "danger");
+    renderEnquiries();
+  }
+}
+
+document.getElementById("enquiryForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const form = this;
+  const newEnq = {
+    date: form.querySelector("input[type='date']").value,
+    project: form.querySelectorAll("select")[0].value,
+    flatType: form.querySelectorAll("select")[1].value,
+    customer: form.querySelectorAll("input[type='text'], input[type='tel']")[1].value.trim(),
+    mobile: form.querySelectorAll("input[type='text'], input[type='tel']")[2].value.trim(),
+    budget: form.querySelectorAll("input[type='text']")[3].value.replace(/[^0-9]/g, "") || 4500000,
+    source: form.querySelectorAll("select")[2].value || "Website",
+    location: form.querySelectorAll("select")[3].value || "City Center",
+    bedrooms: form.querySelectorAll("select")[4].value || "2",
+    purpose: form.querySelectorAll("select")[5].value || "Self Use",
+    type: form.querySelectorAll("select")[6].value || "Hot Lead"
+  };
+
+  CRMStore.addEnquiry(newEnq);
+  showToast(`Enquiry registered for ${newEnq.customer}! (Lead auto-created)`);
+  form.reset();
+  renderEnquiries();
+});
+
+document.addEventListener("DOMContentLoaded", renderEnquiries);
+</script>
+</body>
+</html>

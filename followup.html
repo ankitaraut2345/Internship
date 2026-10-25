@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyline CRM | Follow Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts & Bootstrap 5.3.3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Mobile Hamburger Toggle -->
+<button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3 btn-sidebar-toggle rounded-circle shadow" onclick="toggleSidebar()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+
+<!-- Navigation Sidebar -->
+<nav class="sidebar theme-employee">
+  <a class="brand" href="employee-dashboard.html">
+    <div class="brand-icon"><i class="bi bi-building"></i></div>
+    <span>Skyline <span style="font-weight:400;color:#c084fc;">CRM</span></span>
+  </a>
+
+  <div class="profile">
+    <div class="avatar"><i class="bi bi-person-fill"></i></div>
+    <div class="overflow-hidden">
+      <div class="name text-truncate">Employee User</div>
+      <div class="role"><span class="dot"></span>Employee</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-link" href="employee-dashboard.html"><i class="bi bi-grid-fill"></i> <span>Dashboard</span></a>
+    <a class="nav-link" href="enquiry.html"><i class="bi bi-card-list"></i> <span>All Enquiry</span></a>
+    <a class="nav-link active" href="followup.html"><i class="bi bi-telephone-fill"></i> <span>Follow Up</span></a>
+    <a class="nav-link" href="lead.html"><i class="bi bi-bullseye"></i> <span>Lead</span></a>
+    <a class="nav-link" href="daybook.html"><i class="bi bi-journal-text"></i> <span>Day Book</span></a>
+    <a class="nav-link" href="pettycash.html"><i class="bi bi-cash-coin"></i> <span>Petty Cash Entry</span></a>
+    <a class="nav-link" href="vendor-payment.html"><i class="bi bi-truck"></i> <span>Vendor Payment Entry</span></a>
+    <a class="nav-link" href="employee-payment.html"><i class="bi bi-wallet2"></i> <span>Employee Payment Entry</span></a>
+    <a class="nav-link" href="flat-sale.html"><i class="bi bi-building-check"></i> <span>Flat Sale Entry</span></a>
+    <a class="nav-link logout-link mt-4" href="login.html"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+  </div>
+</nav>
+
+<!-- Main Workspace Content -->
+<div class="main-content">
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="topbar-title">Client Follow Up Management</h1>
+      <div class="topbar-breadcrumb">
+        <a href="employee-dashboard.html">Dashboard</a>
+        <span>&rsaquo;</span>
+        <span class="text-dark fw-semibold">Scheduled Client Calls & Site Visits</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <button class="btn btn-purple shadow" data-bs-toggle="modal" data-bs-target="#scheduleFollowupModal">
+        <i class="bi bi-calendar-plus me-1"></i> Schedule Follow Up
+      </button>
+
+      <a href="#" class="btn-icon-topbar" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notify-dot"></span>
+      </a>
+
+      <div class="topbar-user">
+        <div class="user-img" style="background:var(--crm-purple-light);color:var(--crm-purple);">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="d-none d-sm-block text-start">
+          <div class="small fw-bold text-dark lh-1">Employee User</div>
+          <small class="text-muted" style="font-size:0.7rem;">Sales Executive</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter Card Panel (Matching PDF 2 Page 3) -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-funnel-fill text-purple"></i> Filter Follow Ups
+      </h2>
+      <span class="text-muted small">Filter by status, interaction channel and date schedule</span>
+    </div>
+
+    <form id="followupFilterForm" onsubmit="event.preventDefault(); applyFollowupFilter();">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-3">
+          <label class="form-label">Follow Up Status</label>
+          <select id="filterStatus" class="form-select">
+            <option value="All" selected>All</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label class="form-label">Follow Up Type</label>
+          <select id="filterType" class="form-select">
+            <option value="All" selected>All</option>
+            <option value="Call">Call</option>
+            <option value="Visit">Visit</option>
+            <option value="Email">Email</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-2">
+          <label class="form-label">From Date</label>
+          <input type="date" id="filterFromDate" class="form-control">
+        </div>
+
+        <div class="col-12 col-md-2">
+          <label class="form-label">To Date</label>
+          <input type="date" id="filterToDate" class="form-control">
+        </div>
+
+        <div class="col-12 col-md-2 d-flex gap-2">
+          <button type="submit" class="btn btn-purple flex-fill shadow">
+            <i class="bi bi-funnel"></i> Filter
+          </button>
+          <button type="button" class="btn btn-outline-secondary" onclick="resetFollowupFilter()">
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Follow Up List Table Panel -->
+  <section class="card-panel">
+    <div class="card-panel-header">
+      <h2 class="card-panel-title">
+        <i class="bi bi-telephone-inbound-fill text-primary"></i> Follow Up List
+      </h2>
+      <span class="badge bg-purple-subtle text-purple fw-bold px-3 py-1 rounded-pill" id="followupCountBadge">Active Tasks</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle" id="followupTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Enquiry ID</th>
+            <th>Customer Name</th>
+            <th>Mobile No.</th>
+            <th>Type</th>
+            <th>Follow Up Date</th>
+            <th>Status</th>
+            <th>Next Follow Up</th>
+            <th class="text-end pe-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Footer -->
+    <div class="pagination-container">
+      <small class="text-muted fw-semibold" id="tableCountText">Showing entries</small>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<!-- Modal: Schedule Follow Up -->
+<div class="modal fade" id="scheduleFollowupModal" tabindex="-1" aria-labelledby="scheduleFollowupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0 rounded-4">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold text-dark" id="scheduleFollowupModalLabel">
+          <i class="bi bi-calendar-event text-purple me-2"></i>Schedule Follow Up
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="newFollowupForm">
+        <div class="modal-body pt-3">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Customer / Enquiry *</label>
+            <select id="modalEnquiryCode" class="form-select" required onchange="onEnquirySelect(this.value)">
+              <option value="">Select Enquiry</option>
+            </select>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Customer Name</label>
+              <input type="text" id="modalCustomerName" class="form-control" placeholder="Customer Name" required>
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Mobile Number</label>
+              <input type="tel" id="modalCustomerMobile" class="form-control" placeholder="Mobile" required>
+            </div>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Interaction Type *</label>
+              <select id="modalFollowupType" class="form-select" required>
+                <option value="Call" selected>Phone Call</option>
+                <option value="Visit">Site Visit</option>
+                <option value="Email">Email</option>
+                <option value="WhatsApp">WhatsApp</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Status *</label>
+              <select id="modalFollowupStatus" class="form-select" required>
+                <option value="Pending" selected>Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Follow Up Date *</label>
+              <input type="date" id="modalFollowupDate" class="form-control" required>
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Next Follow Up Date</label>
+              <input type="date" id="modalNextDate" class="form-control">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Discussion Notes / Remarks</label>
+            <textarea id="modalFollowupNotes" class="form-control" rows="2" placeholder="e.g. Client requested sample flat tour on Sunday morning"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-purple px-4 shadow">Save Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/crm-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+let activeFilter = { status: "All", type: "All", fromDate: "", toDate: "" };
+
+function renderFollowups() {
+  if (!window.CRMStore) return;
+  const list = CRMStore.getFollowups();
+  const tbody = document.querySelector("#followupTable tbody");
+  if (!tbody) return;
+
+  const filtered = list.filter(item => {
+    if (activeFilter.status !== "All" && item.status !== activeFilter.status) return false;
+    if (activeFilter.type !== "All" && item.type !== activeFilter.type) return false;
+    if (activeFilter.fromDate && item.date < activeFilter.fromDate) return false;
+    if (activeFilter.toDate && item.date > activeFilter.toDate) return false;
+    return true;
+  });
+
+  tbody.innerHTML = "";
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No follow-ups matching your criteria</td></tr>`;
+  } else {
+    filtered.forEach((f, idx) => {
+      let badgeCls = "badge-pending";
+      if (f.status === "In Progress") badgeCls = "badge-inprogress";
+      if (f.status === "Completed") badgeCls = "badge-completed";
+
+      let typeIcon = "bi-telephone";
+      if (f.type === "Visit") typeIcon = "bi-geo-alt";
+      if (f.type === "Email") typeIcon = "bi-envelope";
+      if (f.type === "WhatsApp") typeIcon = "bi-whatsapp";
+
+      tbody.innerHTML += `
+        <tr>
+          <td>${idx + 1}</td>
+          <td><span class="fw-bold text-dark">${f.enquiryCode || "ENQ-GEN"}</span></td>
+          <td><div class="fw-semibold">${f.customer}</div></td>
+          <td><i class="bi bi-telephone text-muted me-1"></i>${f.mobile || "N/A"}</td>
+          <td>
+            <span class="badge bg-light text-dark border">
+              <i class="bi ${typeIcon} me-1 text-primary"></i>${f.type}
+            </span>
+          </td>
+          <td>${f.date}</td>
+          <td><span class="badge-status ${badgeCls}">${f.status}</span></td>
+          <td><span class="fw-bold text-primary">${f.nextDate || "-"}</span></td>
+          <td class="text-end pe-3">
+            <div class="action-btns">
+              <button class="btn-action btn-view" title="View Details" onclick="alert('Follow Up Log:\\nCustomer: ${f.customer}\\nMobile: ${f.mobile}\\nType: ${f.type}\\nStatus: ${f.status}\\nNotes: ${f.notes || "None"}')"><i class="bi bi-eye"></i></button>
+              <button class="btn-action btn-edit" title="${f.status === 'Completed' ? 'Mark Pending' : 'Mark Completed'}" onclick="toggleStatus(${f.id}, '${f.status}')">
+                <i class="bi ${f.status === 'Completed' ? 'bi-arrow-counterclockwise' : 'bi-check2-circle text-success'}"></i>
+              </button>
+              <button class="btn-action btn-delete" title="Delete" onclick="deleteFollowup(${f.id})"><i class="bi bi-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  const badge = document.getElementById("followupCountBadge");
+  if (badge) badge.textContent = `${list.filter(f => f.status === 'Pending').length} Pending Tasks`;
+
+  const countText = document.getElementById("tableCountText");
+  if (countText) countText.textContent = `Showing ${filtered.length} of ${list.length} entries`;
+
+  populateEnquiryDropdown();
+}
+
+function populateEnquiryDropdown() {
+  const select = document.getElementById("modalEnquiryCode");
+  if (!select || select.children.length > 1) return;
+  const enqs = CRMStore.getEnquiries();
+  enqs.forEach(e => {
+    const opt = document.createElement("option");
+    opt.value = e.code;
+    opt.textContent = `${e.code} - ${e.customer} (${e.flatType})`;
+    opt.dataset.customer = e.customer;
+    opt.dataset.mobile = e.mobile;
+    select.appendChild(opt);
+  });
+}
+
+function onEnquirySelect(code) {
+  const select = document.getElementById("modalEnquiryCode");
+  const opt = select.options[select.selectedIndex];
+  if (opt && opt.dataset.customer) {
+    document.getElementById("modalCustomerName").value = opt.dataset.customer;
+    document.getElementById("modalCustomerMobile").value = opt.dataset.mobile;
+  }
+}
+
+function toggleStatus(id, currentStatus) {
+  const newStatus = currentStatus === "Completed" ? "Pending" : "Completed";
+  CRMStore.updateFollowupStatus(id, newStatus);
+  showToast(`Follow up status marked as ${newStatus}`);
+  renderFollowups();
+}
+
+function deleteFollowup(id) {
+  if (confirm("Are you sure you want to remove this follow up record?")) {
+    CRMStore.deleteFollowup(id);
+    showToast("Follow up record deleted", "danger");
+    renderFollowups();
+  }
+}
+
+function applyFollowupFilter() {
+  activeFilter.status = document.getElementById("filterStatus").value;
+  activeFilter.type = document.getElementById("filterType").value;
+  activeFilter.fromDate = document.getElementById("filterFromDate").value;
+  activeFilter.toDate = document.getElementById("filterToDate").value;
+  renderFollowups();
+  showToast("Filter applied");
+}
+
+function resetFollowupFilter() {
+  document.getElementById("followupFilterForm").reset();
+  activeFilter = { status: "All", type: "All", fromDate: "", toDate: "" };
+  renderFollowups();
+  showToast("Filters reset");
+}
+
+document.getElementById("newFollowupForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const f = {
+    enquiryCode: document.getElementById("modalEnquiryCode").value,
+    customer: document.getElementById("modalCustomerName").value.trim(),
+    mobile: document.getElementById("modalCustomerMobile").value.trim(),
+    type: document.getElementById("modalFollowupType").value,
+    status: document.getElementById("modalFollowupStatus").value,
+    date: document.getElementById("modalFollowupDate").value,
+    nextDate: document.getElementById("modalNextDate").value || "-",
+    notes: document.getElementById("modalFollowupNotes").value.trim()
+  };
+
+  CRMStore.addFollowup(f);
+  showToast(`Follow up scheduled for ${f.customer}!`);
+
+  const modalEl = document.getElementById("scheduleFollowupModal");
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) modalInstance.hide();
+  this.reset();
+  document.getElementById("modalFollowupDate").value = new Date().toISOString().split("T")[0];
+
+  renderFollowups();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dInput = document.getElementById("modalFollowupDate");
+  if (dInput) dInput.value = new Date().toISOString().split("T")[0];
+  renderFollowups();
+});
+window.addEventListener("crm_data_updated", renderFollowups);
+</script>
+</body>
+</html>
