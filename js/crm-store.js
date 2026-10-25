@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Skyline CRM - Central Reactive Data Store & Business Logic
  * Persists data to localStorage with automatic seed initialization
  */
@@ -95,9 +95,9 @@ const CRMStore = {
   getSession() {
     try {
       const s = localStorage.getItem(CRM_SESSION_KEY);
-      return s ? JSON.parse(s) : { userType: "admin", name: "Admin User", role: "Super Admin" };
+      return s ? JSON.parse(s) : null;
     } catch (e) {
-      return { userType: "admin", name: "Admin User", role: "Super Admin" };
+      return null;
     }
   },
 

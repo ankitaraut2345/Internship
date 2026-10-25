@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Skyline CRM - Main Application Script
  * Enhanced with Toast Notifications, Live Dashboard KPI updates & Session Management
  */
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Sync session in topbar
   if (window.CRMStore) {
-    const session = CRMStore.getSession();
+    const session = CRMStore.getSession() || { userType: "admin", name: "Admin User", role: "Super Admin" };
     const userNames = document.querySelectorAll(".topbar-user .fw-bold, .sidebar .profile .name");
     userNames.forEach(el => el.textContent = session.name);
     

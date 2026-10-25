@@ -1,32 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Skyline CRM | Real Estate Management</title>
   <meta http-equiv="refresh" content="0; url=login.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <script src="js/crm-store.js"></script>
   <script>
-    // Smart redirect based on existing session
-    try {
-      const session = CRMStore ? CRMStore.getSession() : null;
-      if (session && session.userType === "employee") {
-        window.location.replace("employee-dashboard.html");
-      } else if (session && session.userType === "admin") {
-        window.location.replace("admin-dashboard.html");
-      } else {
-        window.location.replace("login.html");
-      }
-    } catch (e) {
-      window.location.replace("login.html");
-    }
+    // Always open login page first when visiting the site
+    window.location.replace("login.html");
   </script>
 </head>
 <body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#0f172a;color:#fff;">
   <div style="text-align:center;">
     <h2 style="margin-bottom:8px;">Skyline CRM</h2>
-    <p style="color:#94a3b8;">Redirecting to portal...</p>
-    <a href="login.html" style="color:#60a5fa;text-decoration:none;">Click here if not redirected automatically &rarr;</a>
+    <p style="color:#94a3b8;">Redirecting to Login...</p>
+    <a href="login.html" style="color:#60a5fa;text-decoration:none;">Click here to Login &rarr;</a>
   </div>
 </body>
 </html>
